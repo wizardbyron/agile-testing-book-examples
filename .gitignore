@@ -135,3 +135,5 @@ out/
 ### VS Code ###
 .vscode/
 .DS_Store
+
+/bdd/account-maven/account/target/
