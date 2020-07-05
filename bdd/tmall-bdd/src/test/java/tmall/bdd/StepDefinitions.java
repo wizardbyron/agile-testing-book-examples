@@ -13,9 +13,9 @@ public class StepDefinitions {
 
     }
 
-    @当("打开浏览器并输入 http:\\/\\/www.tmall.com 的时候")
-    public void 打开浏览器并输入_http_www_tmall_com_的时候() {
-        this.driver.get("http://www.tmall.com");
+    @当("打开浏览器并输入{string}的时候")
+    public void 打开浏览器并输入_的时候(String url) {
+        driver.get(url);
     }
 
     @那么("我可以进入天猫首页")
