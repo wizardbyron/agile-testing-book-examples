@@ -136,4 +136,4 @@ out/
 .vscode/
 .DS_Store
 
-/bdd/account-maven/account/target/
+target/
