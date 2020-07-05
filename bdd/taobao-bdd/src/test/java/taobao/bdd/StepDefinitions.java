@@ -22,7 +22,8 @@ public class StepDefinitions {
 
     @那么("我可以进入淘宝网首页")
     public void 我可以进入淘宝网首页() {
-        // Write code here that turns the phrase above into concrete actions
-//        throw new io.cucumber.java.PendingException();
+        String pageTitle = this.driver.getTitle();
+        assert(pageTitle).contains("淘宝网");
+        this.driver.quit();
     }
 }
