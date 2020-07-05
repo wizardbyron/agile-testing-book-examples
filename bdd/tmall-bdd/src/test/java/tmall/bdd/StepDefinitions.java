@@ -21,13 +21,17 @@ public class StepDefinitions {
     @那么("我可以进入天猫首页")
     public void 我可以进入天猫首页() {
         当前网址以_作为开头("https://www.tmall.com");
-        this.driver.quit();
     }
 
     @那么("当前网址以{string}作为开头")
     public void 当前网址以_作为开头(String url) {
         String currentURL = this.driver.getCurrentUrl();
         assert(currentURL).startsWith(url);
+    }
+
+    @那么("关闭浏览器")
+    public void 关闭浏览器(){
+        this.driver.quit();
     }
 
 
