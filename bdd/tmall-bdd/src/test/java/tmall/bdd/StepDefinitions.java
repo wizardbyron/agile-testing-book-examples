@@ -20,7 +20,7 @@ public class StepDefinitions {
 
     @那么("我可以进入天猫首页")
     public void 我可以进入天猫首页() {
-        assert(this.driver.getTitle()).startsWith("天猫tmall.com");
+        assert(this.driver.getCurrentUrl()).startsWith("https://www.tmall.com");
         this.driver.quit();
     }
 }
