@@ -20,10 +20,21 @@ public class StepDefinitions {
         this.driver.get(url);
     }
 
-    @那么("我可以进入淘宝网首页")
-    public void 我可以进入淘宝网首页() {
+    @那么("浏览器的标签包含{string}")
+    public void 浏览器的标签包含(String title) {
         String pageTitle = this.driver.getTitle();
-        assert(pageTitle).contains("淘宝网");
+        assert(pageTitle).contains(title);
+    }
+
+    @那么("当前网址以{string}作为开头")
+    public void 当前网址以_作为开头(String url) {
+        String currentURL = this.driver.getCurrentUrl();
+        assert(currentURL).startsWith(url);
+    }
+
+    @那么("关闭浏览器")
+    public void 关闭浏览器(){
         this.driver.quit();
     }
+
 }
