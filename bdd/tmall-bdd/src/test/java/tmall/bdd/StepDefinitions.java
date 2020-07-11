@@ -1,25 +1,27 @@
 package tmall.bdd;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.zh_cn.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.List;
 
 
 public class StepDefinitions {
-    WebDriver driver = new FirefoxDriver();
+    WebDriver driver;
 
     @假定("我没有打开浏览器")
     public void 我没有打开浏览器() {
-
     }
 
     @当("打开浏览器并输入{string}的时候")
     public void 打开浏览器并输入_的时候(String url) {
-        driver.get(url);
+        this.driver.get(url);
     }
 
     @那么("我可以进入天猫首页")
@@ -59,5 +61,17 @@ public class StepDefinitions {
             }
         }
         assert(result);
+    }
+
+    @Before()
+    public void openBrowser(){
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(true);
+        this.driver = new FirefoxDriver(options);
+    }
+
+    @After()
+    public void closeBrowser() {
+        driver.quit();
     }
 }
