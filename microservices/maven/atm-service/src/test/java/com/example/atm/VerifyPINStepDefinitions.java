@@ -53,4 +53,10 @@ public class VerifyPINStepDefinitions {
     public void 储户可以看到自己的余额_元(Double balance) {
         assertEquals(String.format("Your balance is: %f", balance), this.atm.getScreenMessage());
     }
+
+    @那么("储户可以看到密码错误的提示")
+    public void 储户可以看到密码错误的提示() {
+        assertEquals("Your PIN is invalid.", this.atm.getScreenMessage());
+    }
+
 }

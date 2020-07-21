@@ -24,5 +24,8 @@ public class DebitCard {
     public boolean verifyPIN(Integer pin){
         return this.PIN.intValue() == pin;
     }
-    
+
+    public Long getCardID() {
+        return this.cardId;
+    }
 }

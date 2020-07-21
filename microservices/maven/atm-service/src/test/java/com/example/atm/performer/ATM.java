@@ -26,7 +26,11 @@ public class ATM {
     }
 
     public void enterPIN(Integer pin) {
-        this.verifiedPIN = this.card.verifyPIN(pin);
-        this.queryBalance();
+        this.verifiedPIN = this.debitCardService.verifyPIN(this.card.getCardID(), pin);
+        if (!this.verifiedPIN) {
+            this.screenMessage = "Your PIN is invalid.";
+        } else {
+            this.queryBalance();
+        }
     }
 }
