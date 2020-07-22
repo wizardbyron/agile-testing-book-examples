@@ -93,6 +93,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<testFramework>JUNIT5</testFramework>
+					<testMode>EXPLICIT</testMode>
 				</configuration>
 			</plugin>
 			<plugin>
