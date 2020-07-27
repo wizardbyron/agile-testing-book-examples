@@ -41,6 +41,16 @@
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -63,6 +73,7 @@
 				<version>2.2.3.RELEASE</version>
 				<extensions>true</extensions>
 				<configuration>
+					<baseClassForTests>com.example.card.CardServiceApplicationTests</baseClassForTests>
 					<testFramework>JUNIT5</testFramework>
 				</configuration>
 			</plugin>
