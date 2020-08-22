@@ -15,7 +15,12 @@ public class CardController {
                                     @PathVariable("pin") Integer pin) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Content-Type", "application/json;charset=utf-8");
-        return new ResponseEntity("{\"result\":\"OK\"}", responseHeaders, HttpStatus.ACCEPTED);
+        ResponseEntity response;
+        if (id == 1111222233334444l && pin == 123456)
+            response = new ResponseEntity("{\"result\":\"OK\"}", responseHeaders, HttpStatus.ACCEPTED);
+        else
+            response = new ResponseEntity("{\"result\":\"Your PIN is invalid\"}", responseHeaders, HttpStatus.BAD_REQUEST);
+        return response;
     }
 
 }
