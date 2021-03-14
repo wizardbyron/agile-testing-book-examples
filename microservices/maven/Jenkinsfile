@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Get code from repo'){
+            steps{
+                // Get some code from a GitHub repository
+                git 'https://github.com/wizardbyron/agile-testing-book-examples'
+            }
+        }
+        stage('Test & Build card-service') {
+            steps {
+                
+                dir('microservices/maven/card-service'){
+                    sh "./mvnw clean package"
+                }
+            }
+        }
+
+        stage('Deploy card-service on Jenkins') {
+            steps {
+                dir('microservices/maven/card-service'){
+                    sh "docker build . -t card-service"
+                    sh "docker tag card-service:latest card-service:${BUILD_NUMBER}"
+                    sh "docker stop card-service || echo \"Stop card-service failed\"."
+                    sh "docker run -d --rm -p 8080:8080 --name card-service card-service:${BUILD_NUMBER}"
+                    sh "docker ps"
+                }
+            }
+        }
+        stage('Test & Build atm-service') {
+            steps {
+                
+                dir('microservices/maven/atm-service'){
+                    sh "./mvnw clean package"
+                }
+            }
+        }
+
+        stage('Deploy atm-service on Jenkins') {
+            steps {
+                dir('microservices/maven/atm-service'){
+                    sh "docker build . -t atm-service"
+                    sh "docker tag atm-service:latest atm-service:${BUILD_NUMBER}"
+                    sh "docker stop atm-service || echo \"Stop card-service failed\"."
+                    sh "docker run -d --rm -p 8081:8080 --name atm-service atm-service:${BUILD_NUMBER}"
+                    sh "docker ps"
+                }
+            }
+        }
+    }
+    post {
+
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir()
+        }
+    }
+}
