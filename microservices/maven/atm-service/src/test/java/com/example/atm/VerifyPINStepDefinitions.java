@@ -62,8 +62,8 @@ public class VerifyPINStepDefinitions {
         assertEquals("Your PIN is invalid.", this.atm.getScreenMessage());
     }
 
-    @假设("ATM空闲")
-    public void ATM空闲() {
-        this.atm.reset();
+    @假设("ATM已初始化")
+    public void ATM已初始化() {
+        this.atm.init();
     }
 }

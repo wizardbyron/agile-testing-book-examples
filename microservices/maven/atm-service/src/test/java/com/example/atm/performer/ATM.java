@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ATM {
     @Autowired
-    private DebitCardService debitCardService = new DebitCardService();
+    private DebitCardService debitCardService;
     private DebitCard card;
     private String screenMessage;
     private boolean verifiedPIN = false;
@@ -38,7 +38,7 @@ public class ATM {
         }
     }
 
-    public void reset() {
+    public void init() {
         this.verifiedPIN = false;
         this.card = null;
         this.screenMessage = null;
