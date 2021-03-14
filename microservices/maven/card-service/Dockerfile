@@ -1,6 +1,3 @@
-FROM openjdk:15-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:11-jdk-slim
+COPY target/card-service-0.0.1-SNAPSHOT.jar /opt/service.jar
+ENTRYPOINT ["java","-jar","/opt/service.jar"]
