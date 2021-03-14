@@ -2,9 +2,13 @@ package com.example.atm.performer;
 
 import com.example.atm.domain.model.DebitCard;
 import com.example.atm.domain.service.DebitCardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ATM {
-    private final DebitCardService debitCardService = new DebitCardService();
+    @Autowired
+    private DebitCardService debitCardService = new DebitCardService();
     private DebitCard card;
     private String screenMessage;
     private boolean verifiedPIN = false;
@@ -32,5 +36,11 @@ public class ATM {
         } else {
             this.queryBalance();
         }
+    }
+
+    public void reset() {
+        this.verifiedPIN = false;
+        this.card = null;
+        this.screenMessage = null;
     }
 }

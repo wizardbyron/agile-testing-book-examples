@@ -5,26 +5,29 @@ import com.example.atm.domain.model.DebitCard;
 import com.example.atm.performer.ATM;
 import com.example.atm.performer.Customer;
 import io.cucumber.java.zh_cn.假如;
+import io.cucumber.java.zh_cn.假设;
 import io.cucumber.java.zh_cn.当;
 import io.cucumber.java.zh_cn.那么;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VerifyPINStepDefinitions {
     private final Customer customer = new Customer();
-    private final ATM atm = new ATM();
+    @Autowired
+    private ATM atm;
 
     @假如("储户拥有一张卡号为\"{}\"的借记卡")
     public void 储户拥有一张卡号为_的借记卡(Long cardId) {
         this.customer.haveCard(new DebitCard(cardId));
     }
 
-    @假如("密码为\"{int}\"")
+    @假设("密码为\"{int}\"")
     public void 密码为(Integer PIN) {
         this.customer.setDebitCardPIN(PIN);
     }
 
-    @假如("储户借记卡账户余额为\"{double}\"元")
+    @假设("储户借记卡账户余额为\"{double}\"元")
     public void 储户借记卡账户余额为_元(Double balance) {
         this.customer.setCardAccount(new Account(balance));
     }
@@ -59,4 +62,8 @@ public class VerifyPINStepDefinitions {
         assertEquals("Your PIN is invalid.", this.atm.getScreenMessage());
     }
 
+    @假设("ATM空闲")
+    public void ATM空闲() {
+        this.atm.reset();
+    }
 }
