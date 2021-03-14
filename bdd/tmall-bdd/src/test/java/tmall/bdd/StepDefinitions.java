@@ -15,7 +15,7 @@ import java.util.List;
 public class StepDefinitions {
     WebDriver driver;
 
-    @假定("我没有打开浏览器")
+    @假设("我没有打开浏览器")
     public void 我没有打开浏览器() {
     }
 

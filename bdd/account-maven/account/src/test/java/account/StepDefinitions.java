@@ -26,7 +26,7 @@ public class StepDefinitions {
         assertEquals(value, this.account.getBalance());
     }
 
-    @假定("我没有账户")
+    @假设("我没有账户")
     public void 我没有账户() {
         // Write code here that turns the phrase above into concrete actions
         this.account = null;
@@ -45,7 +45,7 @@ public class StepDefinitions {
     public void 我存入_元后(Double value) {
         this.account.deposit(value);
     }
-    @假定("我的账户初始余额为 {double}")
+    @假设("我的账户初始余额为 {double}")
     public void 我账户的初始余额为(Double value) {
         this.account = new Account();
         this.account.deposit(value);
