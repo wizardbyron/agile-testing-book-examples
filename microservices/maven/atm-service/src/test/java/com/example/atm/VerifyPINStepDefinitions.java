@@ -8,16 +8,26 @@ import io.cucumber.java.zh_cn.假如;
 import io.cucumber.java.zh_cn.假设;
 import io.cucumber.java.zh_cn.当;
 import io.cucumber.java.zh_cn.那么;
+import io.cucumber.junit.platform.engine.Cucumber;
+import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Scope;
 
+import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
+@Cucumber
+@CucumberContextConfiguration
+@Scope(SCOPE_CUCUMBER_GLUE)
 public class VerifyPINStepDefinitions {
     private final Customer customer = new Customer();
+
     @Autowired
     private ATM atm;
 
-    @假如("储户拥有一张卡号为\"{}\"的借记卡")
+    @假如("储户拥有一张卡号为\"{long}\"的借记卡")
     public void 储户拥有一张卡号为_的借记卡(Long cardId) {
         this.customer.haveCard(new DebitCard(cardId));
     }
@@ -33,7 +43,7 @@ public class VerifyPINStepDefinitions {
     }
 
     @当("储户将卡插入ATM")
-    public void 储户将卡插入atm() {
+    public void 储户将卡插入ATM() {
         this.customer.insertCardToATM(atm);
     }
 

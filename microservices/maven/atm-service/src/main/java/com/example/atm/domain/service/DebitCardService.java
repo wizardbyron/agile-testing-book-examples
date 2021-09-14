@@ -13,14 +13,14 @@ public class DebitCardService {
 
     @Value("${card-service.host}")
     private String cardServiceHost;
+
     public boolean verifyPIN(Long cardID, Integer pin) {
         RestTemplate template = new RestTemplate();
         try {
-            String requestURL = String.format("http://%s/verify_pin/%d/%d",this.cardServiceHost,cardID, pin);
-            ResponseEntity<Map> entity = template.getForEntity(requestURL, Map.class);
-            Map body = entity.getBody();
-            return "OK".equals(body.get("result")) && (entity.getStatusCode() == HttpStatus.ACCEPTED);
-        }catch (Exception e){
+            String requestURL = String.format("http://%s/verify?id=%d&pin%d", this.cardServiceHost, cardID, pin);
+            String result = template.getForObject(requestURL, String.class);
+            return "OK".equals(result);
+        } catch (Exception e) {
             return false;
         }
     }

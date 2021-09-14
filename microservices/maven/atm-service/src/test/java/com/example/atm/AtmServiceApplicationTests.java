@@ -9,9 +9,6 @@ import org.springframework.context.annotation.Scope;
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 
 @SpringBootTest
-@Cucumber
-@CucumberContextConfiguration
-@Scope(SCOPE_CUCUMBER_GLUE)
 class AtmServiceApplicationTests {
 
 	@Test
