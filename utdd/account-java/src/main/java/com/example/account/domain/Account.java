@@ -1,4 +1,7 @@
-package com.example.account;
+package com.example.account.domain;
+
+import com.example.account.NegativeBalanceException;
+import com.example.account.NegtiveValueException;
 
 import java.util.UUID;
 

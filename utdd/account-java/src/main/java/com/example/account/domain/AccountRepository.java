@@ -1,4 +1,4 @@
-package com.example.account;
+package com.example.account.domain;
 
 public interface AccountRepository  {
 
